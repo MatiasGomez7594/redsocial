@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create ('publicaciones',function(Blueprint $table){
+        Schema::create('notificaciones',function(Blueprint $table){
             $table->id()->unique();
-            $table->string('nombre',100);//maximo de 255 caracteres, para mas usar text
-            $table->string('email',200)->unique();
-            $table->string('pass',25);
-            $table->text('url_foto');
-            $table->string('estado',10);
+            $table->text('contenido');
+            $table->text('tipo');
+            $table->unsignedBigInteger('id_usuario');
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamp('fecha');
 
         });
     }
@@ -29,5 +29,6 @@ return new class extends Migration
     public function down(): void
     {
         //
+        Schema::dropIfExists('notificaciones');
     }
 };

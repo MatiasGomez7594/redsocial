@@ -61,4 +61,16 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // seguidores de un usuario
+    public function seguidos()
+    {
+        return $this->belongsToMany(User::class, 'seguidores', 'id_seguidor', 'id_seguido');
+    }
+
+    public function seguidores()
+    {
+        return $this->belongsToMany(User::class, 'seguidores', 'id_seguido', 'id_seguidor');
+    }
+
 }

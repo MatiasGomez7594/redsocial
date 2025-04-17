@@ -16,7 +16,7 @@ CREATE TABLE publicaciones(
     foreign key (id_usuario) REFERENCES usuarios(id)
 );
 
-CREATE TABLE archivos_publicaciones(
+CREATE TABLE imgs_publicacion(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     url_archivo VARCHAR(300),
     id_publicacion INT NOT NULL,
@@ -31,14 +31,9 @@ CREATE TABLE seguidores(
     FOREIGN  KEY(id_usuario_seguido) REFERENCES usuarios(id)
 );
 
-CREATE TABLE me_gustas(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    me_gusta INT(1),
-    id_publicacion INT NOT NULL,
-    id_usuario INT NOT NULL,
-    FOREIGN  KEY(id_usuario) REFERENCES usuarios(id),
-    FOREIGN  KEY(id_publicacion) REFERENCES publicaciones(id)
-);
+
+
+
 
 CREATE TABLE comentarios(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -47,6 +42,14 @@ CREATE TABLE comentarios(
     id_publicacion INT NOT NULL,
     FOREIGN  KEY(id_usuario) REFERENCES usuarios(id),
     FOREIGN  KEY(id_publicacion) REFERENCES publicaciones(id)
+);
+CREATE TABLE respuestas(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    contenido VARCHAR(500),
+    id_usuario INT NOT NULL,
+    id_comentario INT NOT NULL,
+    FOREIGN  KEY(id_usuario) REFERENCES usuarios(id),
+    FOREIGN  KEY(id_comentario) REFERENCES comentarios(id)
 );
 CREATE TABLE mensajes(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -70,4 +73,30 @@ CREATE TABLE notificaciones(
     contenido VARCHAR(200),
     id_usuario INT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+
+CREATE TABLE me_gustas_publicaciones(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    me_gusta INT(1),
+    id_publicacion INT NOT NULL,
+    id_usuario INT NOT NULL,
+    FOREIGN  KEY(id_usuario) REFERENCES usuarios(id),
+    FOREIGN  KEY(id_publicacion) REFERENCES publicaciones(id)
+);
+CREATE TABLE me_gustas_comentarios(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    me_gusta INT(1),
+    id_comentario INT NOT NULL,
+    id_usuario INT NOT NULL,
+    FOREIGN  KEY(id_usuario) REFERENCES usuarios(id),
+    FOREIGN  KEY(id_comentario) REFERENCES comentarios(id)
+);
+CREATE TABLE me_gustas_respuestas(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    me_gusta INT(1),
+    id_respuesta INT NOT NULL,
+    id_usuario INT NOT NULL,
+    FOREIGN  KEY(id_usuario) REFERENCES usuarios(id),
+    FOREIGN  KEY(id_respuesta) REFERENCES respuestas(id)
 );
