@@ -23,10 +23,16 @@ class FeedPublicaciones extends Component
         $idsUsuarios = $seguidosIds->push($usuario->id);
     
         // Obtenemos las publicaciones
-        $this->publicaciones = Publicacion::with(['usuario', 'imgs'])
-            ->whereIn('id_usuario', $idsUsuarios)
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $this->publicaciones = Publicacion::with([
+            'usuario', 
+            'imgs', 
+            'comentarios.usuario',         // Autor del comentario
+            'comentarios.respuestas.usuario' // Autor de la respuesta
+        ])
+        ->whereIn('id_usuario', $idsUsuarios)
+        ->orderBy('created_at', 'desc')
+        ->get();
+        
     }
     
 

@@ -22,6 +22,7 @@ class Comentario extends Model
         return $this->hasMany(Comentario::class, 'id_padre');
     }
 
+    //con esto obtengo las respuestas de un comentario con el id_padre
     public function padre() {
         return $this->belongsTo(Comentario::class, 'id_padre');
     }

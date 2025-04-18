@@ -12,13 +12,15 @@ class publicacion extends Model
 
     protected $fillable = ['id_usuario', 'contenido', 'imagen'];
 
+    //obtengo todas las publicaciones de un usuario y/o la de sus seguidos
     public function usuario() {
         return $this->belongsTo(User::class, 'id_usuario');
     }
-
+    //obtengo todos los comentarios relacionados con una publicacion
     public function comentarios() {
-        return $this->hasMany(Comentario::class, 'id_publicacion');
+        return $this->hasMany(Comentario::class, 'id_publicacion')->whereNull('id_padre');
     }
+    //obtengo todos las imagenes de una publicacion
     public function imgs() {
         return $this->hasMany(ImgsPublicacion::class, 'id_publicacion');
     }
