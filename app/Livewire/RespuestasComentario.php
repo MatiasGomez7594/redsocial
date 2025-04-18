@@ -14,7 +14,7 @@ class RespuestasComentario extends Component
     public $respuestaNueva = '';
 
     protected $rules = [
-        'comentarioNuevo' => 'required|string|max:1000',
+        'respuestaNueva' => 'required|string|max:1000',
     ];
 
     public function enviarRespuesta()

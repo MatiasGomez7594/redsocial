@@ -73,4 +73,9 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'seguidores', 'id_seguido', 'id_seguidor');
     }
 
+    public function publicaciones()
+    {
+        return $this->hasMany(\App\Models\Publicacion::class, 'id_usuario');
+    }
+
 }

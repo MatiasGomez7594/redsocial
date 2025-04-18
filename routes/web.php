@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\RutasController;
 
+use App\Http\Controllers\UsuarioController;
+
+Route::get('/usuario/{id}', [UsuarioController::class, 'verUsuario'])->name('ver.usuario');
+Route::get('/mi-perfil', [UsuarioController::class, 'miPerfil'])->name('mi.perfil');
 
 /*
 |--------------------------------------------------------------------------

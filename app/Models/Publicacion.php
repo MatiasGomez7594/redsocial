@@ -21,8 +21,9 @@ class publicacion extends Model
         return $this->hasMany(Comentario::class, 'id_publicacion')->whereNull('id_padre');
     }
     //obtengo todos las imagenes de una publicacion
-    public function imgs() {
-        return $this->hasMany(ImgsPublicacion::class, 'id_publicacion');
+    public function imgs()
+    {
+        return $this->hasMany(\App\Models\ImgsPublicacion::class, 'id_publicacion');
     }
 }
 

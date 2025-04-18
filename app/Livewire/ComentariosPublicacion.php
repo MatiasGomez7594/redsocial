@@ -28,7 +28,7 @@ class ComentariosPublicacion extends Component
         $this->comentarioNuevo = '';
 
         // Refresca los comentarios
-        $this->publicacion->load('comentarios.usuario');
+        //$this->publicacion->load('comentarios.usuario');
     }
 
     public function render()
